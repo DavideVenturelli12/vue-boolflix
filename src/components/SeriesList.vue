@@ -1,16 +1,27 @@
 <template>
   <div class="container">
-    <div class="card" v-for="series in series" :key="series.id">
-      <h2>{{ series.name }}</h2>
-      <h4>({{ series.original_name }})</h4>
+    <div class="card" v-for="serie in series" :key="serie.id">
+      <h2>{{ serie.name }}</h2>
+      <h4>({{ serie.original_name }})</h4>
       <img
-        v-if="flagAvailable.includes(series.original_language)"
+        v-if="flagAvailable.includes(serie.original_language)"
         class="flag"
-        :src="`./img/${series.original_language}.png`"
-        :alt="series.original_language"
+        :src="`./img/${serie.original_language}.png`"
+        :alt="serie.original_language"
       />
-      <p>{{ series.original_language }}</p>
-      <p>{{ series.vote_average }}</p>
+      <p v-else class="flagNotAvaileble">{{ serie.original_language }}</p>
+      <p>{{ serie.vote_average }}</p>
+      <img
+        v-if="serie.poster_path != null"
+        :src="'https://image.tmdb.org/t/p/w342' + serie.poster_path"
+        :alt="serie.original_name"
+      />
+      <img
+        v-else
+        class="no-image"
+        src="../assets/no-image.png"
+        alt="not available"
+      />
     </div>
   </div>
 </template>
@@ -45,6 +56,14 @@ export default {
     background-color: white;
     .flag {
       width: 20px;
+    }
+    .flagNotAvaileble {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .no-image {
+      width: 100px;
+      margin: 50px auto;
     }
   }
 }

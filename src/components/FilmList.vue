@@ -9,8 +9,19 @@
         :src="`./img/${film.original_language}.png`"
         :alt="film.original_language"
       />
-      <span>{{ film.original_language }}</span>
+      <p v-else class="flagNotAvaileble">{{ film.original_language }}</p>
       <p>{{ film.vote_average }}</p>
+      <img
+        v-if="film.poster_path != null"
+        :src="'https://image.tmdb.org/t/p/w342' + film.poster_path"
+        :alt="film.original_title"
+      />
+      <img
+        v-else
+        class="no-image"
+        src="../assets/no-image.png"
+        alt="not available"
+      />
     </div>
   </div>
 </template>
@@ -45,6 +56,10 @@ export default {
     background-color: white;
     .flag {
       width: 20px;
+    }
+    .flagNotAvaileble {
+      font-size: 20px;
+      font-weight: 600;
     }
   }
 }

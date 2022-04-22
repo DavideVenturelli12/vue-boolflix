@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     searching(textToSearch) {
-      console.log("searched Text:", textToSearch);
+      //console.log("searched Text:", textToSearch);
       const paramsObj = {
         params: {
           api_key: this.apiKey,
