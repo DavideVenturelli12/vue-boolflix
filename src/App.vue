@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <HeaderComponent @search="searching" />
-    <MainComponent :films="films" />
+    <MainComponent :films="films" :series="series" />
   </div>
 </template>
 
@@ -22,9 +22,16 @@ export default {
       apiUrl: "https://api.themoviedb.org/3/search/",
       apiKey: "089652cdebc3953b09d9f6ae1f72abf9",
       films: [],
+      series: [],
     };
   },
   methods: {
+    queryMovie() {
+      this.searching("movies");
+    },
+    queryTv() {
+      this.searching("tv");
+    },
     searching(textToSearch) {
       console.log(textToSearch);
       const paramsObj = {
@@ -43,6 +50,13 @@ export default {
           }
         })
         .catch((error) => console.log(error));
+
+      axios.get(this.apiUrl + "tv", paramsObj).then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          this.series = response.data.results;
+        }
+      });
     },
   },
 };

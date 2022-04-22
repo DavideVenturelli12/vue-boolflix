@@ -1,19 +1,19 @@
 <template>
   <div class="container">
-    <div class="card" v-for="film in films" :key="film.id">
-      <h2>{{ film.title }}</h2>
-      <h4>({{ film.original_title }})</h4>
-      <p>{{ film.original_language }}</p>
-      <p>{{ film.vote_average }}</p>
+    <div class="card" v-for="series in series" :key="series.id">
+      <h2>{{ series.name }}</h2>
+      <h4>({{ series.original_name }})</h4>
+      <p>{{ series.original_language }}</p>
+      <p>{{ series.vote_average }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "FilmList",
+  name: "SereisList",
   props: {
-    films: Array,
+    series: Array,
   },
 };
 </script>
@@ -21,7 +21,7 @@ export default {
 <style lang='scss' scoped>
 .container {
   max-width: 1200px;
-  margin: 50px auto;
+  margin: 100px auto;
   display: flex;
   flex-wrap: wrap;
   .card {

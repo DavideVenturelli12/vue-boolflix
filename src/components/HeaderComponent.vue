@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  height: 5vh;
+  height: 8vh;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -38,8 +38,6 @@ header {
   padding: 0 5px;
   color: red;
   background-color: black;
-  position: fixed;
-  z-index: 2;
   #logo {
     width: 50px;
   }
