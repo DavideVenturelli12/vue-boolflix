@@ -26,14 +26,8 @@ export default {
     };
   },
   methods: {
-    queryMovie() {
-      this.searching("movies");
-    },
-    queryTv() {
-      this.searching("tv");
-    },
     searching(textToSearch) {
-      console.log(textToSearch);
+      console.log("searched Text:", textToSearch);
       const paramsObj = {
         params: {
           api_key: this.apiKey,
@@ -52,7 +46,7 @@ export default {
         .catch((error) => console.log(error));
 
       axios.get(this.apiUrl + "tv", paramsObj).then((response) => {
-        console.log(response);
+        //console.log(response);
         if (response.status === 200) {
           this.series = response.data.results;
         }

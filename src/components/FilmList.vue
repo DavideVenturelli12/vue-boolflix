@@ -3,7 +3,13 @@
     <div class="card" v-for="film in films" :key="film.id">
       <h2>{{ film.title }}</h2>
       <h4>({{ film.original_title }})</h4>
-      <p>{{ film.original_language }}</p>
+      <img
+        v-if="flagAvailable.includes(film.original_language)"
+        class="flag"
+        :src="`./img/${film.original_language}.png`"
+        :alt="film.original_language"
+      />
+      <span>{{ film.original_language }}</span>
       <p>{{ film.vote_average }}</p>
     </div>
   </div>
@@ -14,6 +20,11 @@ export default {
   name: "FilmList",
   props: {
     films: Array,
+  },
+  data() {
+    return {
+      flagAvailable: ["en", "it", "cn", "es", "fr", "jp", "ru", "us"],
+    };
   },
 };
 </script>
@@ -32,6 +43,9 @@ export default {
     padding: 10px;
     border: 2px solid black;
     background-color: white;
+    .flag {
+      width: 20px;
+    }
   }
 }
 </style>

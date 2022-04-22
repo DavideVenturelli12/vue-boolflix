@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img id="logo" src="../assets/logo.jpg" alt="Netflix Logo" />
+    <img id="logo" src="../assets/logo.png" alt="Netflix Logo" />
     <div>
       <input
         v-model="textToSearch"
@@ -38,8 +38,8 @@ header {
   padding: 0 5px;
   color: red;
   background-color: black;
-  #logo {
-    width: 50px;
+  img {
+    width: 100px;
   }
   input {
     height: 30px;

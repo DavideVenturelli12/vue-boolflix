@@ -3,6 +3,12 @@
     <div class="card" v-for="series in series" :key="series.id">
       <h2>{{ series.name }}</h2>
       <h4>({{ series.original_name }})</h4>
+      <img
+        v-if="flagAvailable.includes(series.original_language)"
+        class="flag"
+        :src="`./img/${series.original_language}.png`"
+        :alt="series.original_language"
+      />
       <p>{{ series.original_language }}</p>
       <p>{{ series.vote_average }}</p>
     </div>
@@ -14,6 +20,11 @@ export default {
   name: "SereisList",
   props: {
     series: Array,
+  },
+  data() {
+    return {
+      flagAvailable: ["en", "it", "cn", "es", "fr", "jp", "ru", "us"],
+    };
   },
 };
 </script>
@@ -32,6 +43,9 @@ export default {
     padding: 10px;
     border: 2px solid black;
     background-color: white;
+    .flag {
+      width: 20px;
+    }
   }
 }
 </style>
