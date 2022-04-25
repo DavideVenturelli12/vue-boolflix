@@ -1,27 +1,48 @@
 <template>
   <div class="container">
     <div class="card" v-for="film in films" :key="film.id">
-      <h2>{{ film.title }}</h2>
-      <h4>({{ film.original_title }})</h4>
-      <img
-        v-if="flagAvailable.includes(film.original_language)"
-        class="flag"
-        :src="`./img/${film.original_language}.png`"
-        :alt="film.original_language"
-      />
-      <p v-else class="flagNotAvaileble">{{ film.original_language }}</p>
-      <p>{{ film.vote_average }}</p>
+      <!--card info-->
+      <div>
+        <h3>
+          TITOLO: <span>{{ film.title }}</span>
+        </h3>
+        <h3>
+          TITOLO ORIGINALE:
+          <span>
+            {{ film.original_title }}
+          </span>
+        </h3>
+        <img
+          v-if="flagAvailable.includes(film.original_language)"
+          class="flag"
+          :src="`./img/${film.original_language}.png`"
+          :alt="film.original_language"
+        />
+        <p v-else class="flagNotAvaileble">
+          LINGUA: {{ film.original_language }}
+        </p>
+        <h3>
+          VOTO:
+          <span>
+            {{ film.vote_average / 2 }}
+          </span>
+        </h3>
+        <h3 v-if="film.overview != ''">
+          OVERVIEW: <span>{{ film.overview }}</span>
+        </h3>
+        <h3 v-else>OVERVIEW: <span>non disponibile </span></h3>
+      </div>
+
+      <!--card poster-->
       <img
         v-if="film.poster_path != null"
+        class="poster"
         :src="'https://image.tmdb.org/t/p/w342' + film.poster_path"
         :alt="film.original_title"
       />
-      <img
-        v-else
-        class="no-image"
-        src="../assets/no-image.png"
-        alt="not available"
-      />
+      <div v-else class="no-image">
+        <p>ANTEPRIMA NON DISPONIBILE</p>
+      </div>
     </div>
   </div>
 </template>
@@ -41,26 +62,5 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.container {
-  max-width: 1200px;
-  margin: 50px auto;
-  display: flex;
-  flex-wrap: wrap;
-  .card {
-    width: 200px;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border: 2px solid black;
-    background-color: white;
-    .flag {
-      width: 20px;
-    }
-    .flagNotAvaileble {
-      font-size: 20px;
-      font-weight: 600;
-    }
-  }
-}
+@import "@/styles/item";
 </style>

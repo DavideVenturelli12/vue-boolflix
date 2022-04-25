@@ -38,7 +38,7 @@ export default {
       axios
         .get(this.apiUrl + "movie", paramsObj)
         .then((response) => {
-          //console.log(response);
+          console.log(response);
           if (response.status === 200) {
             this.films = response.data.results;
           }

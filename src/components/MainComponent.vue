@@ -27,7 +27,7 @@ main {
   height: 92vh;
   display: flex;
   flex-direction: column;
-  background-color: black;
+  background-color: #333;
   overflow: auto;
 }
 ::-webkit-scrollbar {

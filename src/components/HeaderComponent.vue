@@ -1,13 +1,50 @@
 <template>
   <header>
-    <img id="logo" src="../assets/logo.png" alt="Netflix Logo" />
-    <div>
+    <div class="navigation">
+      <div>
+        <img
+          id="logo"
+          src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
+          alt="Netflix Logo"
+        />
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Serie TV</a>
+          </li>
+          <li>
+            <a href="#">Film</a>
+          </li>
+          <li>
+            <a href="#">Originali</a>
+          </li>
+          <li>
+            <a href="#">Aggiunti di recente</a>
+          </li>
+          <li>
+            <a href="#">La mia lista</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="search-section">
       <input
+        class="margin-10"
         v-model="textToSearch"
         type="text"
         placeholder="Cerca Film o Serie TV"
       />
-      <button @click="search">Cerca</button>
+      <button class="margin-10" @click="search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <p class="margin-10">BAMBINI</p>
+      <i class="fa-solid fa-bell margin-10"></i>
+      <img class="margin-10" src="../assets/Netflix-avatar.png" alt="avatar" />
     </div>
   </header>
 </template>
@@ -22,7 +59,9 @@ export default {
   },
   methods: {
     search() {
-      this.$emit("search", this.textToSearch);
+      if (this.textToSearch != "") {
+        this.$emit("search", this.textToSearch);
+      }
     },
   },
 };
@@ -36,21 +75,55 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 5px;
-  color: red;
-  background-color: black;
+  color: lightgrey;
+  background-color: #333;
   img {
     width: 100px;
   }
-  input {
-    height: 30px;
-    padding: 0 5px;
-    border-radius: 5px;
+  .navigation {
+    display: flex;
+    align-items: center;
+    img {
+      margin: 0 15px;
+    }
+    ul {
+      list-style: none;
+      li {
+        display: inline-block;
+        margin: 0 10px;
+        font-weight: 600;
+        a {
+          color: lightgrey;
+          text-decoration: none;
+        }
+        a:hover {
+          color: white;
+        }
+      }
+    }
   }
-  button {
-    height: 25px;
-    background-color: white;
-    border: 0;
-    border-radius: 5px;
+  .search-section {
+    display: flex;
+    align-items: center;
+    img {
+      width: 40px;
+    }
+    input {
+      height: 25px;
+      padding: 0 5px;
+      border-radius: 5px;
+      border: 0;
+    }
+    button {
+      height: 25px;
+      background-color: transparent;
+      border: 0;
+      color: white;
+      font-size: 18px;
+    }
+  }
+  .margin-10 {
+    margin-right: 10px;
   }
 }
 </style>
