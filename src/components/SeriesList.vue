@@ -2,7 +2,7 @@
   <div class="container">
     <div class="card" v-for="serie in series" :key="serie.id">
       <!--card info-->
-      <div>
+      <div class="info">
         <h3>
           TITOLO:
           <span>
@@ -27,7 +27,19 @@
         <h3>
           VOTO:
           <span>
-            {{ serie.vote_average / 2 }}
+            <!--stelle piene-->
+            <i
+              :key="'star' + index"
+              v-for="(star, index) in getStars(serie)"
+              class="fa-solid fa-star stars"
+            >
+            </i>
+            <!--stelle vuote-->
+            <i
+              :key="'emptystar' + index"
+              v-for="(emptystar, index) in 5 - getStars(serie)"
+              class="fa-regular fa-star"
+            ></i>
           </span>
         </h3>
         <h3 v-if="serie.overview != ''">
@@ -44,6 +56,7 @@
         :alt="serie.original_name"
       />
       <div v-else class="no-image">
+        <h3>{{ serie.name }}</h3>
         <p>ANTEPRIMA NON DISPONIBILE</p>
       </div>
     </div>
@@ -60,6 +73,11 @@ export default {
     return {
       flagAvailable: ["en", "it", "cn", "es", "fr", "jp", "ru", "us"],
     };
+  },
+  methods: {
+    getStars(serie) {
+      return Math.ceil(serie.vote_average / 2);
+    },
   },
 };
 </script>

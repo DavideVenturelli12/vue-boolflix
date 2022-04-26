@@ -10,32 +10,43 @@
         height: 500px;
         display: flex;
         flex-direction: column;
-        border: 2px solid #333;
+        border: 4px solid #333;
+        background-color: black;
 
-        h3 {
-            font-size: 16px;
-            color: lightgrey;
-            margin: 5px 0;
-            padding: 0 10px;
+        .info {
+            overflow: auto;
 
-            span {
-                font-weight: 500;
-                font-size: 12px;
+            h3 {
+                font-size: 16px;
+                color: lightgrey;
+                margin: 5px 0;
+                padding: 0 10px;
+
+                span {
+                    font-weight: 500;
+                    font-size: 14px;
+
+                    .stars {
+                        color: rgb(224, 213, 53);
+                    }
+                }
+            }
+
+            .flag {
+                width: 20px;
+                margin: 5px 10px;
+                border-radius: 2px;
+            }
+
+            .flagNotAvaileble {
+                margin: 5px 10px;
+                color: lightgray;
+                font-weight: 600;
             }
         }
-
-        .flag {
-            width: 20px;
-            margin: 5px 10px;
-            border-radius: 2px;
-        }
-
-        .flagNotAvaileble {
-            margin: 5px 10px;
-            color: lightgray;
-            font-weight: 600;
-        }
     }
+
+
 
     .poster {
         position: absolute;
@@ -54,10 +65,23 @@
         width: 100%;
         height: 100%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
         color: white;
         font-weight: 600;
+
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 12px;
+        }
+    }
+
+    .no-image:hover {
+        display: none;
     }
 }

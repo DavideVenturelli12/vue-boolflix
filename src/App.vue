@@ -8,6 +8,7 @@
 <script>
 import HeaderComponent from "./components/HeaderComponent.vue";
 import MainComponent from "./components/MainComponent.vue";
+import { apiKey } from "@/api";
 
 import axios from "axios";
 
@@ -20,14 +21,14 @@ export default {
   data() {
     return {
       apiUrl: "https://api.themoviedb.org/3/search/",
-      apiKey: "089652cdebc3953b09d9f6ae1f72abf9",
+      apiKey: apiKey,
       films: [],
       series: [],
     };
   },
   methods: {
     searching(textToSearch) {
-      //console.log("searched Text:", textToSearch);
+      console.log("Searched Text:", textToSearch);
       const paramsObj = {
         params: {
           api_key: this.apiKey,
@@ -38,7 +39,7 @@ export default {
       axios
         .get(this.apiUrl + "movie", paramsObj)
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           if (response.status === 200) {
             this.films = response.data.results;
           }

@@ -60,7 +60,7 @@ export default {
   methods: {
     search() {
       if (this.textToSearch != "") {
-        this.$emit("search", this.textToSearch);
+        this.$emit("search", this.textToSearch.trim());
       }
     },
   },
@@ -110,9 +110,12 @@ header {
     }
     input {
       height: 25px;
+      width: 150px;
       padding: 0 5px;
       border-radius: 5px;
       border: 0;
+      background-color: transparent;
+      color: lightgray;
     }
     button {
       height: 25px;

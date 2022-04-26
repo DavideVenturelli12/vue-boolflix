@@ -2,11 +2,11 @@
   <div class="container">
     <div class="card" v-for="film in films" :key="film.id">
       <!--card info-->
-      <div>
+      <div class="info">
         <h3>
           TITOLO: <span>{{ film.title }}</span>
         </h3>
-        <h3>
+        <h3 v-if="film.title != film.original_title">
           TITOLO ORIGINALE:
           <span>
             {{ film.original_title }}
@@ -24,7 +24,19 @@
         <h3>
           VOTO:
           <span>
-            {{ film.vote_average / 2 }}
+            <!--stelle piene-->
+            <i
+              :key="'star' + index"
+              v-for="(star, index) in getStars(film)"
+              class="fa-solid fa-star stars"
+            >
+            </i>
+            <!--stelle vuote-->
+            <i
+              :key="'emptystar' + index"
+              v-for="(emptystar, index) in 5 - getStars(film)"
+              class="fa-regular fa-star"
+            ></i>
           </span>
         </h3>
         <h3 v-if="film.overview != ''">
@@ -41,6 +53,7 @@
         :alt="film.original_title"
       />
       <div v-else class="no-image">
+        <h3>{{ film.title }}</h3>
         <p>ANTEPRIMA NON DISPONIBILE</p>
       </div>
     </div>
@@ -57,6 +70,11 @@ export default {
     return {
       flagAvailable: ["en", "it", "cn", "es", "fr", "jp", "ru", "us"],
     };
+  },
+  methods: {
+    getStars(film) {
+      return Math.ceil(film.vote_average / 2);
+    },
   },
 };
 </script>
